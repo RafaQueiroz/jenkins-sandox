@@ -1,4 +1,7 @@
 pipeline {
+	environment{
+		dockerImage= ''
+	}
     agent { 
         node {
             label 'shell-agent'
@@ -7,7 +10,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Building.."
+               	dockerImage = docker.build 'example'
+				echo dockerImage
             }
         }
     }
